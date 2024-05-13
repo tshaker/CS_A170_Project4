@@ -4,7 +4,7 @@ public class BankAccount {
     private String accName;
     private int accNum;
     private char accountType;
-    private double interestRate = 0.03;
+    private double interestRate;
 
     private static int lastAccNum = 0;
 
@@ -13,32 +13,38 @@ public class BankAccount {
     }
 
     public BankAccount(double balance, String accName, char accountType) {
+        setAccountType(accountType);
         this.balance = balance;
         this.accName = accName;
-        this.accountType = accountType;
         this.accNum = ++lastAccNum;
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
+        double newBalance = balance - amount;
+        if (newBalance >= 0) {
+            balance = newBalance;
+        } else {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
     }
 
     public void deposit(double amount) {
         balance += amount;
     }
 
-    public static void transfer(BankAccount fromAccount, BankAccount toAccount, double amount) {
-        fromAccount.withdraw(amount);
-        toAccount.deposit(amount);
-    }
-
     public void displayAccountInfo() {
+        System.out.println("The account name is: " + getName());
+        System.out.println("The account balance is: " + getBalance());
+        System.out.println("The account number is: " + accNum);
+        System.out.println("The account interest rate is: " + getInterestRate());
     }
 
     public void addInterest() {
         if (accountType == 'S') {
             double amount = Financial.percentOf(interestRate, balance);
             balance += amount;
+        } else {
+            throw new IllegalArgumentException("Account type does not bear interest");
         }
     }
 
@@ -64,6 +70,16 @@ public class BankAccount {
 
     public void setAccountType(char accountType) {
         this.accountType = accountType;
+        switch (accountType) {
+            case 'S':
+                this.interestRate = 3;
+                break;
+            case 'C':
+                this.interestRate = 0;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid account type");
+        }
     }
 
     public double getInterestRate() {
@@ -72,5 +88,15 @@ public class BankAccount {
 
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
+    }
+
+    public static void transfer(BankAccount fromAccount, BankAccount toAccount, double amount) {
+        double newBalance = fromAccount.getBalance() - amount;
+        if (newBalance >= 0) {
+            fromAccount.withdraw(amount);
+            toAccount.deposit(amount);
+        } else {
+            throw new IllegalArgumentException("Insufficient funds to transfer");
+        }
     }
 }
