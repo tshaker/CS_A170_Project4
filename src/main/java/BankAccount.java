@@ -1,65 +1,76 @@
 public class BankAccount {
 
-	private double balance;
-	private String accName;
-	private int accNum;
-	private char accountType;
-	private double interestRate;
+    private double balance;
+    private String accName;
+    private int accNum;
+    private char accountType;
+    private double interestRate = 0.03;
 
-	private static int lastAccNum = 0;
+    private static int lastAccNum = 0;
 
-	public BankAccount(double balance, String accName, char accountType) {
-		this.balance = balance;
-		this.accName = accName;
-		this.accountType = accountType;
-		this.interestRate = 0.03;
-		this.accNum = ++lastAccNum;
-	}
+    public BankAccount() {
+        this.accNum = ++lastAccNum;
+    }
 
-	public void withdraw() {
-	}
+    public BankAccount(double balance, String accName, char accountType) {
+        this.balance = balance;
+        this.accName = accName;
+        this.accountType = accountType;
+        this.accNum = ++lastAccNum;
+    }
 
-	public void deposit() {
-	}
+    public void withdraw(double amount) {
+        balance -= amount;
+    }
 
-	public void transfer(BankAccount otherAccount, double amount) {
-	}
+    public void deposit(double amount) {
+        balance += amount;
+    }
 
-	public void displayAccountInfo() {
-	}
+    public static void transfer(BankAccount fromAccount, BankAccount toAccount, double amount) {
+        fromAccount.withdraw(amount);
+        toAccount.deposit(amount);
+    }
 
-	public void addInterest() {
-	}
+    public void displayAccountInfo() {
+    }
 
-	public double getBalance() {
-		return balance;
-	}
+    public void addInterest() {
+        if (accountType == 'S') {
+            double amount = Financial.percentOf(interestRate, balance);
+            balance += amount;
+        }
+    }
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
+    public double getBalance() {
+        return balance;
+    }
 
-	public String getName() {
-		return accName;
-	}
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
-	public void setName(String accName) {
-		this.accName = accName;
-	}
+    public String getName() {
+        return accName;
+    }
 
-	public char getAccountType() {
-		return accountType;
-	}
+    public void setName(String accName) {
+        this.accName = accName;
+    }
 
-	public void setAccountType(char accountType) {
-		this.accountType = accountType;
-	}
+    public char getAccountType() {
+        return accountType;
+    }
 
-	public double getInterestRate() {
-		return interestRate;
-	}
+    public void setAccountType(char accountType) {
+        this.accountType = accountType;
+    }
 
-	public void setInterestRate(double interestRate) {
-		this.interestRate = interestRate;
-	}
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
 }
