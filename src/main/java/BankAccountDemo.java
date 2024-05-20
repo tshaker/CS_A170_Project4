@@ -1,3 +1,11 @@
+/*
+	Shaker, Tim     
+	
+	May 20, 2024
+	
+	CS A170
+	Project 4
+*/
 
 public class BankAccountDemo {
 	/**

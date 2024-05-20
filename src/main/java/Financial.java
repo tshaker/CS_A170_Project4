@@ -1,3 +1,12 @@
+/*
+	Shaker, Tim     
+	
+	May 20, 2024
+	
+	CS A170
+	Project 4
+*/
+
 public class Financial {
 	/**
 	 * Returns the amount of interest earned on a given balance.
