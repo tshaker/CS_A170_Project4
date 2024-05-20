@@ -25,9 +25,9 @@ public class BankAccount {
 
     /**
      * The interest rate for a savings account, expressed as percentage points,
-     * e.g., 4.0 for a 4% interest rate.
+     * e.g., 3.0 for a 3% interest rate.
      */
-    private double interestRate;
+    private double interestRate = 3.0;
 
     /**
      * The last assigned account number.
