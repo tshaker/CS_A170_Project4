@@ -47,7 +47,7 @@ public class BankAccountDemo {
 		SamsAcc.displayAccountInfo();
 		// Withdraw money from SamsAcc, then display the balance after withdrawing.
 		SamsAcc.withdraw(100);
-		System.out.println("The balance after withdrawning is: " + SamsAcc.getBalance());
+		System.out.println("The balance after withdrawing is: " + SamsAcc.getBalance());
 
 		// Attempt to transfer money from SamsAcc to LeilasAcc. Since SamsAcc does not
 		// have enough money, the transfer will fail and throw an exception.
