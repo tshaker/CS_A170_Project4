@@ -7,6 +7,9 @@
 	Project 4
 */
 
+/**
+ * This class demonstrates the use of the BankAccount class.
+ */
 public class BankAccountDemo {
 	/**
 	 * Performs various operations on BankAccount objects.

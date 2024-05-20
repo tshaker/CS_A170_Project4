@@ -7,6 +7,9 @@
 	Project 4
 */
 
+/**
+ * Class containing a static method to calculate interest.
+ */
 public class Financial {
 	/**
 	 * Returns the amount of interest earned on a given balance.
